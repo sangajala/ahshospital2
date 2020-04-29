@@ -1,0 +1,69 @@
+package RegisterUser;
+
+import io.codearte.jfairy.Fairy;
+import io.codearte.jfairy.producer.person.Person;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class NewUserRegister {
+
+    WebDriver driver;
+
+    @Given("Open application")
+    public void openApplicationAnd() {
+
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.get("http://ahs.bananaapps.co.uk/");
+        driver.manage().window().maximize();
+
+    }
+
+    @When("login as a SuperAdmin")
+    public void loginAsASuperAdmin() {
+        driver.findElement(By.id("MobileNumber")).sendKeys("07442382353");
+        driver.findElement(By.id("Password")).sendKeys("Superadmin");
+        driver.findElement(By.xpath("//button[@class='chic-button']")).click();
+
+    }
+
+    @And("Create a new user {string}")
+    public void createANewUser(String user) {
+
+        Fairy fairy = Fairy.create();
+        Person person = fairy.person();
+
+        driver.findElement(By.linkText("MASTERS")).click();
+        driver.findElement(By.linkText("Users")).click();
+        driver.findElement(By.id("sample_editable_1_new")).click();
+        driver.findElement(By.id("UserName")).sendKeys(person.getUsername());
+        driver.findElement(By.id("MobileNumber")).sendKeys(person.getTelephoneNumber());
+        driver.findElement(By.id("EmailID")).sendKeys(person.getEmail());
+        driver.findElement(By.id("Password")).sendKeys(person.getPassword());
+
+        Select userType = new Select(driver.findElement(By.id("UserType")));
+        userType.selectByVisibleText(user);
+
+        Select branchName = new Select(driver.findElement(By.id("BranchID")));
+        branchName.selectByVisibleText("Visakhapatnam");
+
+        driver.findElement(By.xpath("//button[@class='btn green']")).click();
+
+    }
+
+    @Then("verify new user create successfully.")
+    public void verifyNewUserCreateSuccessfully() {
+        Assert.assertTrue(driver.findElement(By.xpath("//h1[text()='User Details']")).isDisplayed());
+          driver.quit();
+
+    }
+
+}
