@@ -1,7 +1,7 @@
 Feature: Appointment Details
 
   Scenario Outline: Check all appointment displays on appointment details page
-    Given User logged in to the URL
+    Given user is in login page
     And Navigates to the Registration Page
     When User select to create a the New User
     And creates appointment with Fill Name as "<Name>" and Age as "<Age>" and Select Gender as "<Select Gender>" and Ref. Doctor as "<Ref. Doctor>" and App Date as "<App Date>" and Time as "<Time>" and Select Branch as "<Branch>"and Enter Address as "<Address>" Total Amount as "<Total Amount>"

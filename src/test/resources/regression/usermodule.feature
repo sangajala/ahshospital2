@@ -4,7 +4,7 @@ Feature: User module
   Scenario Outline: 3 User can be created
 
     Given admin logged into the portals
-    When he go to user module
+    When he go to module "Users"
     And created a new user "<Role>"
     Then the user should be created successfully
 

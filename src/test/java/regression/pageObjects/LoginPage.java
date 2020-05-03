@@ -6,9 +6,6 @@ import regression.TestRunner;
 
 public class LoginPage extends basePage {
 
-
-
-
     public void login(String username,String password) {
         driver.findElement(By.id("MobileNumber")).sendKeys(username);
         driver.findElement(By.id("Password")).sendKeys(password);

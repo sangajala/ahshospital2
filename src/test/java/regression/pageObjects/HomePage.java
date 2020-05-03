@@ -17,6 +17,9 @@ public class HomePage extends basePage{
     @FindBy(how = How.LINK_TEXT, using = "Users")
     WebElement usersLink;
 
+    @FindBy(how = How.LINK_TEXT, using = "Register")
+    WebElement registerLink;
+
     //
 
 ///end of class header
@@ -25,6 +28,16 @@ public class HomePage extends basePage{
     public void gotoUserListPage(){
         mastersLink.click();
         usersLink.click();
+    }
+
+    public void gotoModule(String module){
+        mastersLink.click();
+        driver.findElement(By.linkText(module));
+
+    }
+
+    public void gotoRegiterpage() {
+        registerLink.click();
     }
     //class body
 }

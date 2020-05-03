@@ -67,9 +67,9 @@ public class MyStepdefs extends TestRunner {
 
 
 
-    @When("^he go to user module$")
-    public void heGoToUserModule() {
-        homePage.gotoUserListPage();
+    @When("^he go to module \"([^\"]*)\"$")
+    public void heGoToUserModule(String module) {
+        homePage.gotoModule(module);
     }
 
     @And("^created a new user \"([^\"]*)\"$")
@@ -103,5 +103,10 @@ public class MyStepdefs extends TestRunner {
     @Then("^the error message is shown \"([^\"]*)\"$")
     public void theErrorMessageIsShown(String message) throws Throwable {
         Assert.assertEquals(message,driver.findElement(By.cssSelector("div.col-md-6.alert.alert-danger")).getText().replace("\n","").replace("×","").trim());
+    }
+
+    @And("^Navigates to the Registration Page$")
+    public void navigatesToTheRegistrationPage() {
+        homePage.gotoRegiterpage();
     }
 }
