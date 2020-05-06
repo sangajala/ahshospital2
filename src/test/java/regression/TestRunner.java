@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
         plugin = {"pretty", "html:target/cucumber-html-report", "json:target/cucumber-json-report.json"}
 //        ,
 //        features = "src/test/resources/regression/LoginTests.feature"
-//        tags = {"@1"}
+        ,tags = {"@sriram"}
         //dryRun = true
 )
 public class TestRunner {

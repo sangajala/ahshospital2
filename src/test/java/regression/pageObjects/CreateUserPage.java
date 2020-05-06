@@ -1,6 +1,7 @@
 package regression.pageObjects;
 
 import com.devskiller.jfairy.Fairy;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 import regression.TestRunner;
+
+import java.util.List;
 
 public class CreateUserPage extends basePage  {
 
@@ -39,8 +42,6 @@ public class CreateUserPage extends basePage  {
 
         String email = Fairy.create().person().getEmail();
         driver.findElement(By.id("EmailID")).sendKeys(email);
-
-
         String mobile = Fairy.create().person().getTelephoneNumber();
         driver.findElement(By.id("MobileNumber")).sendKeys(mobile);
 
