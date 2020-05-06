@@ -44,7 +44,7 @@ public class MyStepdefs extends TestRunner {
     @After
     public void stop(Scenario scenario){
 
-        if(!scenario.isFailed()) {
+        if(scenario.isFailed()) {
             byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshotBytes, "image/png");
         }
